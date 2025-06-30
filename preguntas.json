@@ -1,0 +1,102 @@
+[
+    {
+        "pregunta": "¿Qué imprime el siguiente código en Python?\n\nprint('Hola' + str(5))",
+        "opciones": [
+            "A. Hola5",
+            "B. Error",
+            "C. Hola 5",
+            "D. 5Hola"
+        ],
+        "respuesta_correcta": "A"
+    },
+    {
+        "pregunta": "¿Cuál es el animal espiritual de un programador?",
+        "opciones": [
+            "A. Perro",
+            "B. Pato de goma",
+            "C. Gato",
+            "D. Zorro"
+        ],
+        "respuesta_correcta": "B"
+    },
+    {
+        "pregunta": "¿Qué significa 'bug' en el contexto de la programación?",
+        "opciones": [
+            "A. Una mejora",
+            "B. Un error",
+            "C. Un comentario gracioso",
+            "D. Una variable global"
+        ],
+        "respuesta_correcta": "B"
+    },
+    {
+        "pregunta": "¿Qué hace la función len() en Python?",
+        "opciones": [
+            "A. Lanza un error",
+            "B. Suma números",
+            "C. Devuelve la longitud de una secuencia",
+            "D. Borra un elemento"
+        ],
+        "respuesta_correcta": "C"
+    },
+    {
+        "pregunta": "¿Qué lenguaje fue creado en un descanso para tomar café?",
+        "opciones": [
+            "A. Python",
+            "B. Java",
+            "C. C++",
+            "D. COBOL"
+        ],
+        "respuesta_correcta": "B"
+    },
+    {
+        "pregunta": "¿Qué tipo de desarrollador bebe más café?",
+        "opciones": [
+            "A. Frontend",
+            "B. Backend",
+            "C. Fullstack",
+            "D. Todos por igual"
+        ],
+        "respuesta_correcta": "D"
+    },
+    {
+        "pregunta": "¿Qué símbolo se usa para comentar en Python?",
+        "opciones": [
+            "A. //",
+            "B. #",
+            "C. <!-- -->",
+            "D. /**/"
+        ],
+        "respuesta_correcta": "B"
+    },
+    {
+        "pregunta": "¿Qué hace un bucle infinito?",
+        "opciones": [
+            "A. Termina pronto",
+            "B. Duerme mucho",
+            "C. Nunca se detiene",
+            "D. Se ejecuta solo una vez"
+        ],
+        "respuesta_correcta": "C"
+    },
+    {
+        "pregunta": "¿Qué es 'Python'?",
+        "opciones": [
+            "A. Una serpiente",
+            "B. Un lenguaje de programación",
+            "C. Un sistema operativo",
+            "D. Una base de datos"
+        ],
+        "respuesta_correcta": "B"
+    },
+    {
+        "pregunta": "¿Por qué los programadores confunden Halloween y Navidad?",
+        "opciones": [
+            "A. Porque están estresados",
+            "B. Por los colores",
+            "C. Porque Oct 31 == Dec 25",
+            "D. Es un meme sin sentido"
+        ],
+        "respuesta_correcta": "C"
+    }
+]
