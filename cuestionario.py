@@ -1,5 +1,8 @@
 import json
-import signal
+import threading
+import sys
+import select
+
 
 # Cargar preguntas desde un archivo JSON
 def cargar_preguntas(archivo="preguntas.json"):
@@ -16,12 +19,22 @@ def mostrar_pregunta(pregunta):
     for opcion in pregunta["opciones"]:
         print(opcion)
 
-def obtener_respuesta():
-    while True:
-        respuesta = input("Tu respuesta (A, B, C, D): ").upper()
-        if respuesta in ["A", "B", "C", "D"]:
-            return respuesta
-        print("Respuesta inválida. Por favor ingresa A, B, C o D.")
+
+def input_con_tiempo(pregunta, limite=20):
+    respuesta = [None]
+
+    def leer():
+        respuesta[0] = input(pregunta).upper()
+
+    hilo = threading.Thread(target=leer)
+    hilo.daemon = True
+    hilo.start()
+    hilo.join(limite)
+
+    if hilo.is_alive():  # Se acaba el tiempo
+        print("\n⏰ Tiempo agotado (20 segundos)")
+        return None
+    return respuesta[0]
 
 def corregir_respuesta(respuesta, correcta):
     return respuesta == correcta
@@ -61,6 +74,16 @@ def mostrar_ranking(archivo="ranking.txt"):
     except FileNotFoundError:
         print("No hay resultados guardados aún.")
 
+# Para hacer salto de linea cuando se acaba el tiempo
+def input_con_tiempo(pregunta, limite=20): 
+    print(pregunta, end="", flush=True)
+    i, _, _ = select.select([sys.stdin], [], [], limite)
+    if i:
+        return sys.stdin.readline().strip().upper()
+    else:
+        print("\n⏰ Tiempo agotado (20 segundos)")
+        return None
+
 def ejecutar_cuestionario():
     preguntas = cargar_preguntas()
     if not preguntas:
@@ -70,12 +93,16 @@ def ejecutar_cuestionario():
     total = len(preguntas)
     for p in preguntas:
         mostrar_pregunta(p)
-        respuesta = obtener_respuesta()
-        if corregir_respuesta(respuesta, p["respuesta_correcta"]):
+        respuesta = input_con_tiempo("Tu respuesta (A, B, C, D): ", 20)
+
+        if respuesta is None:  # No contestó a tiempo
+            print("❌ Incorrecto. La respuesta correcta era", p["respuesta_correcta"])
+        elif corregir_respuesta(respuesta, p["respuesta_correcta"]):
             print("✅ ¡Correcto!")
             aciertos += 1
         else:
             print(f"❌ Incorrecto. La respuesta correcta era {p['respuesta_correcta']}.")
+
     porcentaje = mostrar_resultados(aciertos, total)
     nombre = input("Introduce tu nombre para guardar el resultado: ")
     guardar_resultado(nombre, porcentaje)
@@ -84,7 +111,7 @@ def ejecutar_cuestionario():
 def main():
     while True:
         print("### MENÚ ###")
-        print("1 - Empezar cuestionario")
+        print("1 - Empezar cuestionario (20 segundos por respuesta)")
         print("2 - Ranking")
         print("3 - Salir")
         opcion = input("Elige una opción: ")
