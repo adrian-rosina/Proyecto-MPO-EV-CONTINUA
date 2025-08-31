@@ -1,8 +1,0 @@
-Adrian,0.00
-Adrian,0.00
-Adrian,60.00
-Jaime,10.00
-pepe,10.00
-a,30.00
-a,10.00
-sd,10.00
